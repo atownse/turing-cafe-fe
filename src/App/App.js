@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.reservations)
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>

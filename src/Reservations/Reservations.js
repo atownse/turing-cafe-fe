@@ -1,39 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Card from '../ResCards/ResCards.js'
 import './Reservations.css'
-import { getReservations } from '../apiCalls'
 
-class Reservations extends Component {
-  constructor() {
-    super()
-    this.state = {
-      reservations: [],
-      errMsg: null
-    }
-  }
-
-  componentDidMount() {
-    getReservations()
-      .then(reservations => this.setState({ reservations }))
-      .catch(err => this.setState({ errMsg: err.message } ))
-  }
-
-  render() {
-    let reservations = this.state.reservations.map(reservation => {
-      return (
-        <Card
-          name={ reservation.name }
-          date={ reservation.date }
-          time={ reservation.time }
-          number={ reservation.number }
-          key={ reservation.id }
-        />
-      )
-    })
+const Reservations = (props) => {
+  const allReservations = props.reservations.map(resy => {
     return (
-      <section>{ reservations }</section>
+      <Card
+        name={ resy.name }
+        date={ resy.date }
+        time={ resy.time }
+        number={ resy.number }
+        key={ resy.id }
+      />
     )
-  }
+  })
+
+  return (
+    <section>{ allReservations }</section>
+  )
 }
 
 export default Reservations
